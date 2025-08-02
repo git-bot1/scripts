@@ -15,8 +15,7 @@ python /tensorrt/tensorrtllm_backend/tensorrt_llm/examples/$EXAMPLE_MODEL_NAME/c
     --model_dir $HF_MODEL_DIR \
     --output_dir $CHECKPOINT_DIR \
     --dtype float16 \
-    --tp_size 4 \
-    --moe_tp_size 4 \
+    --tp_size 1 \
     --workers 4
     # --dtype bfloat16
     # --model_dir $QUANT_MODEL_DIR \
@@ -34,9 +33,12 @@ trtllm-build --checkpoint_dir $CHECKPOINT_DIR \
     --use_paged_context_fmha enable \
     --use_fused_mlp enable \
     --kv_cache_type paged \
+    --paged_state enable \
     --gemm_plugin float16 \
     --max_batch_size 128 \
-    --workers 4
+    --workers 4 \
+    --max_input_len 4096 \
+    --max_seq_len 4352
     # --multiple_profiles enable \
 
 # --multiple_profiles enable
