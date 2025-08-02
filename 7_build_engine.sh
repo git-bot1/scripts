@@ -14,7 +14,7 @@ echo "--------> Converting Model ------------"
 python /tensorrt/tensorrtllm_backend/tensorrt_llm/examples/$EXAMPLE_MODEL_NAME/convert_checkpoint.py \
     --model_dir $HF_MODEL_DIR \
     --output_dir $CHECKPOINT_DIR \
-    --dtype float16 \
+    --dtype bfloat16 \
     --tp_size 1 \
     --workers 4
     # --dtype bfloat16
@@ -34,8 +34,8 @@ trtllm-build --checkpoint_dir $CHECKPOINT_DIR \
     --use_fused_mlp enable \
     --kv_cache_type paged \
     --paged_state enable \
-    --gemm_plugin float16 \
-    --max_batch_size 128 \
+    --gemm_plugin bfloat16 \
+    --max_batch_size 1024 \
     --workers 4 \
     --max_input_len 4096 \
     --max_seq_len 4352
