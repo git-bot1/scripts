@@ -1,9 +1,10 @@
-# HF_MODEL_PATH="meta-llama/Llama-3.1-8B-Instruct"
+HF_MODEL_PATH="meta-llama/Llama-3.1-8B-Instruct"
 # HF_MODEL_PATH="meta-llama/Llama-3.2-1B-Instruct"
 # HF_MODEL_PATH="deepseek-ai/DeepSeek-R1-Distill-Llama-70B"
-HF_MODEL_PATH="mistralai/Mixtral-8x7B-Instruct-v0.1"
-HF_USERNAME=
-HF_TOKEN=""
+# HF_MODEL_PATH="mistralai/Mixtral-8x7B-Instruct-v0.1"
+HF_USERNAME="$1"
+HF_TOKEN="$2"
+
 
 # git config --global credential.helper store
 # huggingface-cli login --token $HF_TOKEN --add-to-git-credential
