@@ -6,7 +6,7 @@ cp /tensorrt/tensorrtllm_backend/all_models/inflight_batcher_llm/* /tensorrt/tri
 ENGINE_DIR=/tensorrt/trt-engines/fp16/1-gpu
 TOKENIZER_DIR=/tensorrt/hf_model
 MODEL_FOLDER=/tensorrt/triton-models
-TRITON_MAX_BATCH_SIZE=128
+TRITON_MAX_BATCH_SIZE=1024
 INSTANCE_COUNT=1
 MAX_QUEUE_DELAY_MS=0
 MAX_QUEUE_SIZE=0
@@ -24,7 +24,7 @@ python3 ${FILL_TEMPLATE_SCRIPT} -i ${MODEL_FOLDER}/postprocessing/config.pbtxt t
 python3 ${FILL_TEMPLATE_SCRIPT} -i ${MODEL_FOLDER}/tensorrt_llm_bls/config.pbtxt triton_max_batch_size:${TRITON_MAX_BATCH_SIZE},decoupled_mode:${DECOUPLED_MODE},bls_instance_count:${INSTANCE_COUNT},logits_datatype:${LOGITS_DATATYPE}
 
 
-python3 /tensorrt/tensorrtllm_backend/scripts/launch_triton_server.py --world_size=4 --model_repo=${MODEL_FOLDER}
+python3 /tensorrt/tensorrtllm_backend/scripts/launch_triton_server.py --world_size=1 --model_repo=${MODEL_FOLDER}
 
 
 # curl -X POST localhost:8000/v2/models/ensemble/generate_stream -d '{"text_input": "What exactly is a Large Language Model?", "max_tokens": 1000, "stream": true, "bad_words": "", "stop_words": "", "accumulate_tokens": true}'
