@@ -15,7 +15,7 @@ sudo apt-get update -y && sudo apt-get install git-lfs -y --no-install-recommend
 git lfs install
 
 # Clone the Hugging Face model repository
-HF_MODEL_DIR=/tensorrt/hf_model
+HF_MODEL_DIR=~/tensorrt/hf_model
 [ -d $HF_MODEL_DIR ] && rm -rf $HF_MODEL_DIR
 mkdir -p $HF_MODEL_DIR && cd $HF_MODEL_DIR
 GIT_ASKPASS=echo git clone https://$HF_USERNAME:$HF_TOKEN@huggingface.co/$HF_MODEL_PATH .
